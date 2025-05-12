@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-dev-456789"
+		},
+		"blob_dump_accountKey": {
+			"value": ""
+		},
+		"blob_dump_properties_typeProperties_url": {
+			"value": "https://adfpoc123133.dfs.core.windows.net/"
+		},
+		"sample_api_properties_typeProperties_url": {
+			"value": "https://api.restful-api.dev/objects/"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
