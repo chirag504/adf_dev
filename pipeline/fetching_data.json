@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "data fetch",
+				"name": "data fetch testing",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
