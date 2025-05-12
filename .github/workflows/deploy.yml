@@ -28,8 +28,8 @@ jobs:
         cd qa_repo
         git config --global user.email "chirag@dreamitcs.com"
         git config --global user.name "GitHub Actions Bot"
-        git add env_config.json
-        git commit -m "Updated connection string for QA"
+        git add .
+        git commit -m "Updated connection strings and paths for QA from Dev repo"
         git push origin main
 
     - name: Deploy to QA Data Factory
