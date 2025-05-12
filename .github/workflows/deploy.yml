@@ -33,7 +33,7 @@ jobs:
     - name: Commit and Push Changes to QA Repository
       run: |
         git config --global user.email "chirag@dreamitcs.com"
-        git config --global user.name "GitHub Actions Bot"
+        git config --global user.name "chirag504"
         git add .
         git commit -m "Updated connection strings and paths for QA from Dev repo"
         git push https://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@github.com/chirag504/adf_dev.git main
