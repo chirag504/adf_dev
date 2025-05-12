@@ -14,14 +14,14 @@ jobs:
 
     - name: Clone QA Repository
       run: |
-        git clone https://github.com/chirag504/adf_qa.git qa_repo
+        git clone https://github.com/chirag504/adf_qa.git adf_qa
 
     - name: Copy Folders from Dev to QA
       run: |
-        cp -r dev_repo/dataset qa_repo/dataset
-        cp -r dev_repo/linkedService qa_repo/linkedService
-        cp -r dev_repo/pipeline qa_repo/pipeline
-        cd qa_repo
+        cp -r adf_dev/dataset adf_qa/dataset
+        cp -r adf_dev/linkedService adf_qa/linkedService
+        cp -r adf_dev/pipeline adf_qa/pipeline
+        cd adf_qa
 
     - name: Update Connection String for QA
       run: |
