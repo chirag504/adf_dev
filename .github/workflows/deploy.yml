@@ -14,16 +14,17 @@ jobs:
 
     - name: Clone QA Repository
       run: |
-        git clone https://x-access-token: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@github.com/chirag504/adf_dev.git adf_qa
+        # Clone into a separate directory outside the current repository
+        git clone https://x-access-token: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@github.com/chirag504/adf_qa.git ../adf_qa
 
     - name: Copy Folders from Dev to QA
       run: |
-        cp -r dataset adf_qa/dataset
-        cp -r linkedService adf_qa/linkedService
-        cp -r pipeline adf_qa/pipeline
-        cd adf_qa
+        cp -r dataset ../adf_qa/dataset
+        cp -r linkedService ../adf_qa/linkedService
+        cp -r pipeline ../adf_qa/pipeline
 
     - name: Update Connection String for QA
+      working-directory: ../adf_qa
       run: |
         sed -i 's/"fileSystem": "adf-dev"/"fileSystem": "adf-qa"/g' dataset/blob_dump.json
         sed -i 's/"schema": "sample"/"schema": "qa_sample"/g' dataset/AzureSqlTable1.json
@@ -31,18 +32,10 @@ jobs:
         sed -i 's/"database": "adf-dev-db-9902"/"database": "adf-qa-db-764899"/g' linkedService/sql_db.json
 
     - name: Commit and Push Changes to QA Repository
+      working-directory: ../adf_qa
       run: |
         git config --global user.email "chirag@dreamitcs.com"
         git config --global user.name "chirag504"
         git add .
         git commit -m "Updated connection strings and paths for QA from Dev repo"
-        git push https://x-access-token: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@github.com/chirag504/adf_qa.git main
-
-    - name: Deploy to QA Data Factory
-      env:
-        AZURE_SUBSCRIPTION_ID: "2f952f42-7a88-4c1e-a912-f2ec877b7be3"
-        AZURE_RESOURCE_GROUP: "default-group-1"
-        AZURE_DATA_FACTORY: "adf-qa-456789"
-      run: |
-        az login --service-principal -u "a7baa46a-8041-40f1-97d1-3f4244409298" -p "r0g8Q~6Y0vMVXzFtgWKUEiBFlHzDUMElZ.Asxdo7" --tenant "0d1140e7-b7b2-4f63-9354-31e03923ad5d"
-        az datafactory pipeline create --resource-group $AZURE_RESOURCE_GROUP --factory-name $AZURE_DATA_FACTORY --pipeline-name "qa_pipeline"
+        git push
