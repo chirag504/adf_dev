@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'blob_dump'"
 		},
+		"sql_db_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'sql_db'"
+		},
 		"blob_dump_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adfpoc123133.dfs.core.windows.net/"
@@ -18,6 +22,18 @@
 		"sample_api_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://api.restful-api.dev/objects/"
+		},
+		"sql_db_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "adf-dev-sql-server-283902.database.windows.net"
+		},
+		"sql_db_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "adf-dev-db-9902"
+		},
+		"sql_db_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "chirag"
 		},
 		"containerUri": {
 			"type": "string",
@@ -49,11 +65,23 @@
 					"blob_dump_accountKey": {
 						"value": "[parameters('blob_dump_accountKey')]"
 					},
+					"sql_db_password": {
+						"value": "[parameters('sql_db_password')]"
+					},
 					"blob_dump_properties_typeProperties_url": {
 						"value": "[parameters('blob_dump_properties_typeProperties_url')]"
 					},
 					"sample_api_properties_typeProperties_url": {
 						"value": "[parameters('sample_api_properties_typeProperties_url')]"
+					},
+					"sql_db_properties_typeProperties_server": {
+						"value": "[parameters('sql_db_properties_typeProperties_server')]"
+					},
+					"sql_db_properties_typeProperties_database": {
+						"value": "[parameters('sql_db_properties_typeProperties_database')]"
+					},
+					"sql_db_properties_typeProperties_userName": {
+						"value": "[parameters('sql_db_properties_typeProperties_userName')]"
 					}
 				}
 			},
