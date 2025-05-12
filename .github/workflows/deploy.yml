@@ -16,6 +16,13 @@ jobs:
       run: |
         git clone https://github.com/chirag504/adf_qa.git qa_repo
 
+    - name: Copy Folders from Dev to QA
+      run: |
+        cp -r dev_repo/dataset qa_repo/dataset
+        cp -r dev_repo/linkedService qa_repo/linkedService
+        cp -r dev_repo/pipeline qa_repo/pipeline
+        cd qa_repo
+
     - name: Update Connection String for QA
       run: |
         sed -i 's/"fileSystem": "adf-dev"/"fileSystem": "adf-qa"/g' dataset/blob_dump.json
@@ -25,7 +32,6 @@ jobs:
 
     - name: Commit and Push Changes to QA Repository
       run: |
-        cd qa_repo
         git config --global user.email "chirag@dreamitcs.com"
         git config --global user.name "GitHub Actions Bot"
         git add .
