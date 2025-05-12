@@ -15,7 +15,7 @@ jobs:
     - name: Clone QA Repository
       run: |
         # Clone into a separate directory outside the current repository
-        git clone https://github.com/chirag504/adf_qa.git ../adf_qa
+        git clone https://chirag504:${{ secrets.PAT_TOKEN }}@github.com/chirag504/adf_qa.git ../adf_qa
 
     - name: Copy Folders from Dev to QA
       run: |
@@ -40,5 +40,5 @@ jobs:
         git add .
         git commit -m "Updated connection strings and paths for QA from Dev repo"
         git remote remove origin
-        git remote add origin https://github.com/chirag504/adf_qa.git
+        git remote add origin https://chirag504:${{ secrets.PAT_TOKEN }}@github.com/chirag504/adf_qa.git
         git push --set-upstream origin qa_branch
