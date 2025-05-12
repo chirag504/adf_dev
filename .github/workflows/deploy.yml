@@ -18,9 +18,9 @@ jobs:
 
     - name: Copy Folders from Dev to QA
       run: |
-        cp -r adf_dev/dataset adf_qa/dataset
-        cp -r adf_dev/linkedService adf_qa/linkedService
-        cp -r adf_dev/pipeline adf_qa/pipeline
+        cp -r dataset adf_qa/dataset
+        cp -r linkedService adf_qa/linkedService
+        cp -r pipeline adf_qa/pipeline
         cd adf_qa
 
     - name: Update Connection String for QA
