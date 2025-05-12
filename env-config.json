@@ -1,0 +1,10 @@
+{
+    "dev": {
+        "sql_server": "adf-dev-sql-server.database.windows.net",
+        "blob_storage": "dev-container.blob.core.windows.net"
+    },
+    "qa": {
+        "sql_server": "adf-qa-sql-server-7839.database.windows.net",
+        "blob_storage": "qa-container.blob.core.windows.net"
+    }
+}

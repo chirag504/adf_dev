@@ -1,0 +1,40 @@
+name: Deploy Data Factory Changes to QA
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Dev Repository
+      uses: actions/checkout@v3
+
+    - name: Clone QA Repository
+      run: |
+        git clone https://github.com/chirag504/adf_qa.git qa_repo
+
+    - name: Update Connection String for QA
+      run: |
+        sed -i 's/"sql_server": "adf-dev-sql-server.database.windows.net"/"sql_server": "adf-qa-sql-server-7839.database.windows.net"/g' env_config.json
+        sed -i 's/"blob_storage": "dev-container.blob.core.windows.net"/"blob_storage": "qa-container.blob.core.windows.net"/g' env_config.json
+
+    - name: Commit and Push Changes to QA Repository
+      run: |
+        cd qa_repo
+        git config --global user.email "chirag@dreamitcs.com"
+        git config --global user.name "GitHub Actions Bot"
+        git add env_config.json
+        git commit -m "Updated connection string for QA"
+        git push origin main
+
+    - name: Deploy to QA Data Factory
+      env:
+        AZURE_SUBSCRIPTION_ID: "2f952f42-7a88-4c1e-a912-f2ec877b7be3"
+        AZURE_RESOURCE_GROUP: "default-group-1"
+        AZURE_DATA_FACTORY: "adf-qa-456789"
+      run: |
+        az login --service-principal -u "a7baa46a-8041-40f1-97d1-3f4244409298" -p "r0g8Q~6Y0vMVXzFtgWKUEiBFlHzDUMElZ.Asxdo7" --tenant "0d1140e7-b7b2-4f63-9354-31e03923ad5d"
+        az datafactory pipeline create --resource-group $AZURE_RESOURCE_GROUP --factory-name $AZURE_DATA_FACTORY --pipeline-name "qa_pipeline"
