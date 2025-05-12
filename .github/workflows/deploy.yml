@@ -40,4 +40,4 @@ jobs:
         git commit -m "Updated connection strings and paths for QA from Dev repo"
         git remote remove origin
         git remote add origin https://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@github.com/chirag504/adf_qa.git
-        git push
+        git push --set-upstream origin main
