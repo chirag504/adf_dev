@@ -14,7 +14,7 @@ jobs:
 
     - name: Clone QA Repository
       run: |
-        git clone https://github.com/chirag504/adf_qa.git adf_qa
+        git clone https://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@github.com/chirag504/adf_dev.git adf_qa
 
     - name: Copy Folders from Dev to QA
       run: |
