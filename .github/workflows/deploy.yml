@@ -36,7 +36,7 @@ jobs:
         git config --global user.name "chirag504"
         git add .
         git commit -m "Updated connection strings and paths for QA from Dev repo"
-        git push https://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@github.com/chirag504/adf_dev.git main
+        git push https://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@github.com/chirag504/adf_qa.git main
 
     - name: Deploy to QA Data Factory
       env:
