@@ -18,8 +18,10 @@ jobs:
 
     - name: Update Connection String for QA
       run: |
-        sed -i 's/"sql_server": "adf-dev-sql-server.database.windows.net"/"sql_server": "adf-qa-sql-server-7839.database.windows.net"/g' env_config.json
-        sed -i 's/"blob_storage": "dev-container.blob.core.windows.net"/"blob_storage": "qa-container.blob.core.windows.net"/g' env_config.json
+        sed -i 's/"fileSystem": "adf-dev"/"fileSystem": "adf-qa"/g' dataset/blob_dump.json
+        sed -i 's/"schema": "sample"/"schema": "qa_sample"/g' dataset/AzureSqlTable1.json
+        sed -i 's/"server": "adf-dev-sql-server-283902.database.windows.net"/"server": "adf-qa-sql-server-7839.database.windows.net"/g' linkedService/sql_db.json
+        sed -i 's/"database": "adf-dev-db-9902"/"database": "adf-qa-db-764899"/g' linkedService/sql_db.json
 
     - name: Commit and Push Changes to QA Repository
       run: |
