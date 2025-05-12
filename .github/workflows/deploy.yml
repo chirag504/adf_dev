@@ -36,7 +36,7 @@ jobs:
         git config --global user.name "GitHub Actions Bot"
         git add .
         git commit -m "Updated connection strings and paths for QA from Dev repo"
-        git push origin main
+        git push https://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@github.com/chirag504/adf_dev.git main
 
     - name: Deploy to QA Data Factory
       env:
